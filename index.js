@@ -12,8 +12,7 @@ module.exports = function () {
 
 	function end () {
 		var annotateResult = ngAnnotate(data, {
-			add: true,
-			remove: true
+			add: true
 		});
 		if (annotateResult.errors) {
 			annotateResult.errors.forEach(function (error) {
