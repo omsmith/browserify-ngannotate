@@ -1,0 +1,1 @@
+angular.module('basic', []).directive('basic', function (someCtrl) {});
