@@ -4,7 +4,8 @@
   "description": "A [browserify](http://github.com/substack/node-browserify) transform that uses [ng-annotate](https://github.com/olov/ng-annotate) to add dependency injection annotations to your AngularJS source code, preparing it for minification.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec spec"
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec spec",
+    "report-cov": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "through": "^2.3.4",
     "mocha": "^1.17.1",
-    "istanbul": "~0.2.7"
+    "istanbul": "~0.2.7",
+    "coveralls": "~2.10.0"
   }
 }
