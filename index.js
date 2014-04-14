@@ -1,16 +1,17 @@
 var ngAnnotate = require('ng-annotate'),
-	through = require('through');
+	through = require('through2');
 
 module.exports = function () {
 	var data = '';
 
-	return through(write, end);
+	return through(transform, flush);
 
-	function write (buf) {
-		data += buf;
+	function transform (chunk, enc, cb) {
+		data += chunk;
+		cb();
 	}
 
-	function end () {
+	function flush (cb) {
 		var annotateResult = ngAnnotate(data, {
 			add: true
 		});
@@ -19,7 +20,8 @@ module.exports = function () {
 				this.emit(error);
 			});
 		}
-		this.queue(annotateResult.src);
-		this.queue(null);
+		this.push(annotateResult.src);
+
+		cb();
 	}
 };
