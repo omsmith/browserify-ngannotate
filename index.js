@@ -12,16 +12,15 @@ module.exports = function () {
 	}
 
 	function flush (cb) {
-		var annotateResult = ngAnnotate(data, {
-			add: true
-		});
-		if (annotateResult.errors) {
-			annotateResult.errors.forEach(function (error) {
-				this.emit(error);
+		try {
+			var annotateResult = ngAnnotate(data, {
+				add: true
 			});
-		}
-		this.push(annotateResult.src);
 
-		cb();
+			this.push(annotateResult.src);
+			cb();
+		} catch (err) {
+			cb(err);
+		}
 	}
 };
