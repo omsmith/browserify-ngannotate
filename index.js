@@ -1,3 +1,5 @@
+'use strict';
+
 var ngAnnotate = require('ng-annotate'),
 	through = require('through2'),
 	defaults = require('defaults');
@@ -17,6 +19,8 @@ module.exports = function (file, opts) {
 	}
 
 	function flush (cb) {
+		// jshint validthis: true
+
 		try {
 			var annotateResult = ngAnnotate(data, opts);
 
