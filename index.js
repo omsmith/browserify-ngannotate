@@ -1,7 +1,12 @@
 var ngAnnotate = require('ng-annotate'),
-	through = require('through2');
+	through = require('through2'),
+	defaults = require('defaults');
 
-module.exports = function () {
+module.exports = function (file, opts) {
+	opts = defaults(opts, {
+		add: true
+	});
+
 	var data = '';
 
 	return through(transform, flush);
@@ -13,9 +18,7 @@ module.exports = function () {
 
 	function flush (cb) {
 		try {
-			var annotateResult = ngAnnotate(data, {
-				add: true
-			});
+			var annotateResult = ngAnnotate(data, opts);
 
 			this.push(annotateResult.src);
 			cb();
