@@ -9,9 +9,19 @@ A [browserify](http://github.com/substack/node-browserify) transform that uses [
 browserify -t browserify-ngannotate app.js > bundle.js
 ```
 
+## Options
+Provided options are passed through to ng-annotate. The `add` option defaults
+to `true`.
+
+For example, to remove annotations, one could use the following:
+
+```
+browserify -t [ browserify-ngannotate --no-add --remove ] app.js > bundle.js
+```
+
 # Install
 ```
-npm install browserify-ngannotate
+npm install browserify-ngannotate --save
 ```
 
 # License
