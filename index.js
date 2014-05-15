@@ -21,13 +21,13 @@ module.exports = function (file, opts) {
 	function flush (cb) {
 		// jshint validthis: true
 
-		try {
-			var annotateResult = ngAnnotate(data, opts);
+		var annotateResult = ngAnnotate(data, opts);
 
-			this.push(annotateResult.src);
-			cb();
-		} catch (err) {
-			cb(err);
+		if (annotateResult.errors) {
+			cb(new Error(annotateResult.errors.join("\n")));
+			return;
 		}
+		this.push(annotateResult.src);
+		cb();
 	}
 };
