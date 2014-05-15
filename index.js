@@ -24,9 +24,10 @@ module.exports = function (file, opts) {
 		var annotateResult = ngAnnotate(data, opts);
 
 		if (annotateResult.errors) {
-			cb(new Error(annotateResult.errors.join("\n")));
+			cb(new Error(annotateResult.errors.join('\n')));
 			return;
 		}
+
 		this.push(annotateResult.src);
 		cb();
 	}
