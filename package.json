@@ -31,9 +31,10 @@
     "defaults": "~1.0.0"
   },
   "devDependencies": {
-    "through": "^2.3.4",
-    "mocha": "^1.17.1",
+    "browserify": "^4.1.5",
+    "coveralls": "~2.10.0",
     "istanbul": "~0.2.7",
-    "coveralls": "~2.10.0"
+    "mocha": "^1.17.1",
+    "through": "^2.3.4"
   }
 }
