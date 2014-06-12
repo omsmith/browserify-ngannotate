@@ -4,7 +4,7 @@
 
 var ngannotate = require('../'),
 	fs = require('fs'),
-	through = require('through'),
+	through = require('through2'),
 	browserify = require('browserify');
 
 describe('basic directive', function () {
@@ -17,14 +17,16 @@ describe('basic directive', function () {
 		})
 		.transform(ngannotate)
 		.bundle()
-		.pipe(through(function (buf) {
+		.pipe(through(function (buf, enc, cb) {
 			data += buf;
-		}, function () {
+			cb();
+		}, function (cb) {
 			var err;
 			if (data !== expected) {
 				err = new Error('expected "' + data + '" to be "' + expected + '"');
 			}
 
+			cb();
 			done(err);
 		}));
 	});
@@ -38,14 +40,16 @@ describe('basic directive', function () {
 		})
 		.transform({ add: false, remove: true }, ngannotate)
 		.bundle()
-		.pipe(through(function (buf) {
+		.pipe(through(function (buf, enc, cb) {
 			data += buf;
-		}, function () {
+			cb();
+		}, function (cb) {
 			var err;
 			if (data !== expected) {
 				err = new Error('expected "' + data + '" to be "' + expected + '"');
 			}
 
+			cb();
 			done(err);
 		}));
 	});

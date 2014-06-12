@@ -26,15 +26,15 @@
   },
   "homepage": "https://github.com/omsmith/browserify-ngannotate",
   "dependencies": {
+    "defaults": "~1.0.0",
     "ng-annotate": "~0.9.1",
-    "through2": "~0.4.1",
-    "defaults": "~1.0.0"
+    "through2": "^0.5.1"
   },
   "devDependencies": {
     "browserify": "^4.1.5",
     "coveralls": "~2.10.0",
     "istanbul": "~0.2.7",
     "mocha": "^1.17.1",
-    "through": "^2.3.4"
+    "through2": "^0.5.1"
   }
 }
