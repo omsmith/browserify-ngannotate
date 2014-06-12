@@ -13,6 +13,7 @@
   },
   "keywords": [
     "browserify",
+    "browserify-transform",
     "angular",
     "ng-annotate",
     "annotate",
