@@ -3,23 +3,22 @@
 var ngAnnotate = require('ng-annotate'),
 	through = require('through2'),
 	defaults = require('defaults'),
-    path = require('path');
+	path = require('path');
 
 module.exports = function (file, opts) {
 	opts = defaults(opts, {
-		add: true
+		add: true,
+		x: [],
+		ext: []
 	});
 
-    var exts = []
-        .concat(opts.exts || [])
-        .concat(opts.x || []);
+	opts.x = Array.isArray(opts.x) && opts.x || [opts.x];
+	opts.ext = Array.isArray(opts.ext) && opts.ext || [opts.ext];
 
-    if (/\.json$/.test(file) ||
-        exts.length &&
-        exts.indexOf(path.extname(file)) === -1
-        ) {
-        return through()
-    }
+	var exts = [].concat(opts.x, opts.ext, ['.js']);
+	if (exts.indexOf(path.extname(file)) == -1) {
+		return through();
+	}
 
 	var data = '';
 

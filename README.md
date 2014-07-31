@@ -19,13 +19,13 @@ For example, to remove annotations, one could use the following:
 browserify -t [ browserify-ngannotate --no-add --remove ] app.js > bundle.js
 ```
 
-###File extensions
+### File extensions
 Define the filetypes to transform. Prevents other resouces like .json or .css from being processed, if you are including them with require().
 
-This is done using the -x or --exts transform options, e.g. from the command-line:
+This is done using the `--x` or `--ext` transform options:
 
 ```
-browserify -t [ browserify-ngannotate --x .js --x .coffe ] app.js > bundle.js
+browserify -t [ browserify-ngannotate --x .coffee ] app.js > bundle.js
 ```
 
 The above example will only annotate .js and .coffee files, ignoring the rest.
