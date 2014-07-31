@@ -8,7 +8,7 @@ var ngannotate = require('../'),
 
 describe('errors', function () {
 	it('should include filename on first line', function (done) {
-		var file = require.resolve('./files/err.js')
+		var file = require.resolve('./files/err.js');
 
 		browserify({
 			entries: file
