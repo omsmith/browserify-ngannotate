@@ -4,8 +4,8 @@
   "description": "A browserify transform that uses ng-annotate to add dependency injection annotations to your AngularJS source code, preparing it for minification.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec spec",
-    "report-cov": "node ./node_modules/lcov-filter/index.js ./coverage/lcov.info spec | ./node_modules/.bin/coveralls"
+    "test": "./node_modules/.bin/istanbul test -x \"**/spec/**\" ./node_modules/.bin/_mocha -- -R spec spec",
+    "report-cov": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,6 @@
     "chai": "~1.9.1",
     "coveralls": "~2.10.0",
     "istanbul": "~0.2.7",
-    "lcov-filter": "0.0.1",
     "mocha": "^1.20.1",
     "through2": "^0.5.1"
   }
