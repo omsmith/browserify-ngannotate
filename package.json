@@ -29,7 +29,7 @@
   "dependencies": {
     "defaults": "~1.0.0",
     "ng-annotate": "~0.12.0",
-    "through2": "^0.5.1"
+    "through2": "~0.6.3"
   },
   "devDependencies": {
     "browserify": "^4.1.5",
