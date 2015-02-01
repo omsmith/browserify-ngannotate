@@ -10,7 +10,7 @@ module.exports = function (file, opts) {
 		add: true,
 		x: [],
 		ext: [],
-		sourcemap: opts._flags.debug
+		sourcemap: opts && opts._flags ? opts._flags.debug : false
 	});
 
 	opts.x = Array.isArray(opts.x) && opts.x || [opts.x];
