@@ -5,30 +5,34 @@
 var ngannotate = require('../'),
 	fs = require('fs'),
 	through = require('through2'),
-	browserify = require('browserify');
+	convertSourceMap = require('convert-source-map'),
+	expect = require('chai').expect;
 
 describe('debug enabled', function () {
 	it('should output sourcemap', function (done) {
 		var data = '',
-			expected = fs.readFileSync(require.resolve('./files/basic_sourcemap_expected.js'), 'utf-8');
+			file = require.resolve('./files/basic.js');
 
-		browserify({
-			debug: true,
-			entries: require.resolve('./files/basic.js')
-		})
-		.transform(ngannotate)
-		.bundle()
-		.pipe(through(function (buf, enc, cb) {
-			data += buf;
-			cb();
-		}, function (cb) {
-			var err;
-			if (data !== expected) {
-				err = new Error('expected "' + data + '" to be "' + expected + '"');
-			}
+		fs
+			.createReadStream(file)
+			.pipe(ngannotate(file, { _flags: { debug: true } }))
+			.pipe(through(function (buf, enc, cb) {
+				data += buf;
+				cb();
+			}, function (cb) {
+				cb();
 
-			cb();
-			done(err);
-		}));
+				var map = convertSourceMap.fromSource(data).toObject();
+
+				expect(map).to.deep.equal({
+					version: 3,
+					sources: [file],
+					names: [],
+					mappings: 'AAAA,QAAQ,OAAO,SAAS,IAAI,UAAU,sBAAS,UAAU,UAAU,KAAI',
+					sourcesContent: [fs.readFileSync(file, 'utf8')]
+				});
+
+				done();
+			}));
 	});
 });
