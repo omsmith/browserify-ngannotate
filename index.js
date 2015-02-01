@@ -9,7 +9,8 @@ module.exports = function (file, opts) {
 	opts = defaults(opts, {
 		add: true,
 		x: [],
-		ext: []
+		ext: [],
+		sourcemap: opts._flags.debug
 	});
 
 	opts.x = Array.isArray(opts.x) && opts.x || [opts.x];
@@ -18,6 +19,13 @@ module.exports = function (file, opts) {
 	var exts = [].concat(opts.x, opts.ext, ['.js']);
 	if (exts.indexOf(path.extname(file)) == -1) {
 		return through();
+	}
+
+	if (opts.sourcemap) {
+		opts.sourcemap = {
+			inFile: file,
+			inline: true
+		};
 	}
 
 	var data = '';
