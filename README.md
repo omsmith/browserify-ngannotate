@@ -19,6 +19,13 @@ For example, to remove annotations, one could use the following:
 browserify -t [ browserify-ngannotate --no-add --remove ] app.js > bundle.js
 ```
 
+### Source maps
+Sourcemapping will be enabled automatically when browserify is in `debug` mode:
+
+```bash
+browserify --debug -t browserify-ngannotate app.js > bundle.js
+```
+
 ### File extensions
 Define the filetypes to transform. Prevents other resouces like .json or .css from being processed, if you are including them with require().
 
