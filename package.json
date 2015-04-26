@@ -29,7 +29,8 @@
   "dependencies": {
     "defaults": "^1.0.0",
     "ng-annotate": "^0.15.1",
-    "through2": "^0.6.3"
+    "through2": "^0.6.3",
+    "clone": "^1.0.2"
   },
   "devDependencies": {
     "browserify": "^8.1.1",
