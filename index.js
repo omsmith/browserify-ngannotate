@@ -4,7 +4,7 @@ var ngAnnotate = require('ng-annotate'),
 	through = require('through2'),
 	defaults = require('defaults'),
 	path = require('path'),
-	clone = require('clone')
+	clone = require('clone');
 
 module.exports = function (file, opts) {
 	opts = defaults(clone(opts), {

@@ -58,20 +58,20 @@ describe('debug enabled', function () {
 			expect(map).to.deep.equal({
 				version: 3,
 				sources: [
-    			'node_modules/browserify/node_modules/browser-pack/_prelude.js',
+					'node_modules/browserify/node_modules/browser-pack/_prelude.js',
 					first,
 					second,
 					third
 				],
 				names: [],
 				mappings: 'AAAA;ACAA,QAAQ;AACR,QAAQ,WAAW;;;ACDnB,SAAS,SAAS,EAAE;;;ACApB,SAAS,QAAQ,EAAE',
-  			file: 'generated.js',
-  			sourceRoot: '',
+  				file: 'generated.js',
+  				sourceRoot: '',
 				sourcesContent: [
 					fs.readFileSync(require.resolve('browserify/node_modules/browser-pack/_prelude'), 'utf8'),
 					fs.readFileSync(first, 'utf8'),
-    			fs.readFileSync(second, 'utf8'),
-    			fs.readFileSync(third, 'utf8'),
+					fs.readFileSync(second, 'utf8'),
+					fs.readFileSync(third, 'utf8'),
 				]
 			});
 
