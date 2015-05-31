@@ -12,39 +12,50 @@ var ngannotate = require('../'),
 describe('debug enabled', function () {
 	it('should output sourcemap', function (done) {
 		var data = '',
-			file = require.resolve('./files/basic.js');
+			file = 'spec/files/basic.js';
 
-		fs
-			.createReadStream(file)
-			.pipe(ngannotate(file, { _flags: { debug: true } }))
-			.pipe(through(function (buf, enc, cb) {
-				data += buf;
-				cb();
-			}, function (cb) {
-				cb();
+		browserify({
+			entries: './' + file,
+			debug: true
+		})
+		.transform(ngannotate)
+		.bundle()
+		.pipe(through(function (buf, enc, cb) {
+			data += buf;
+			cb();
+		}, function (cb) {
+			cb();
 
-				var map = convertSourceMap.fromSource(data).toObject();
+			var map = convertSourceMap.fromSource(data).toObject();
 
-				expect(map).to.deep.equal({
-					version: 3,
-					sources: [file],
-					names: [],
-					mappings: 'AAAA,QAAQ,OAAO,SAAS,IAAI,UAAU,sBAAS,UAAU,UAAU,KAAI',
-					sourcesContent: [fs.readFileSync(file, 'utf8')]
-				});
+			expect(map).to.deep.equal({
+				version: 3,
+				sources: [
+					'node_modules/browserify/node_modules/browser-pack/_prelude.js',
+					file
+				],
+				names: [],
+				mappings: 'AAAA;ACAA,QAAQ,OAAO,SAAS,IAAI,UAAU,sBAAS,UAAU,UAAU,KAAI',
+				file: 'generated.js',
+				sourceRoot: '',
+				sourcesContent: [
+					fs.readFileSync(require.resolve('browserify/node_modules/browser-pack/_prelude'), 'utf8'),
+					fs.readFileSync(file, 'utf8')
+				]
+			});
 
-				done();
-			}));
+			done();
+		}));
 	});
 	
 	it('should output sourcemap for multiple modules', function (done) {
 		var data = '',
-			first = require.resolve('./files/multi/first.js'),
-			second = require.resolve('./files/multi/second.js'),
-			third = require.resolve('./files/multi/third.js');
+			first = 'spec/files/multi/first.js',
+			second = 'spec/files/multi/second.js',
+			third = 'spec/files/multi/third.js';
 
 		browserify({
-			entries: first,
+			entries: './' + first,
 			debug: true
 		})
 		.transform(ngannotate)

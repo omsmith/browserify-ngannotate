@@ -24,7 +24,7 @@ module.exports = function (file, opts) {
 
 	if (opts.sourcemap) {
 		opts.map = {
-			inFile: file,
+			inFile: path.basename(file),
 			inline: true
 		};
 		opts.sourcemap = undefined;
