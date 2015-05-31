@@ -23,10 +23,11 @@ module.exports = function (file, opts) {
 	}
 
 	if (opts.sourcemap) {
-		opts.sourcemap = {
+		opts.map = {
 			inFile: file,
 			inline: true
 		};
+		opts.sourcemap = undefined;
 	}
 
 	var data = '';
