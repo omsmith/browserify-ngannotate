@@ -12,10 +12,10 @@ var ngannotate = require('../'),
 describe('debug enabled', function () {
 	it('should output sourcemap', function (done) {
 		var data = '',
-			file = 'spec/files/basic.js';
+			file = require.resolve('./files/basic.js');
 
 		browserify({
-			entries: './' + file,
+			entries: file,
 			debug: true
 		})
 		.transform(ngannotate)
@@ -50,12 +50,12 @@ describe('debug enabled', function () {
 	
 	it('should output sourcemap for multiple modules', function (done) {
 		var data = '',
-			first = 'spec/files/multi/first.js',
-			second = 'spec/files/multi/second.js',
-			third = 'spec/files/multi/third.js';
+			first = require.resolve('./files/multi/first.js'),
+			second = require.resolve('./files/multi/second.js'),
+			third = require.resolve('./files/multi/third.js');
 
 		browserify({
-			entries: './' + first,
+			entries: first,
 			debug: true
 		})
 		.transform(ngannotate)
