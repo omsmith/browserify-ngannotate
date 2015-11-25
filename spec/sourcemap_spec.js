@@ -31,7 +31,7 @@ describe('debug enabled', function () {
 			expect(map).to.deep.equal({
 				version: 3,
 				sources: [
-					'node_modules/browserify/node_modules/browser-pack/_prelude.js',
+					'node_modules/browser-pack/_prelude.js',
 					file
 				],
 				names: [],
@@ -39,7 +39,7 @@ describe('debug enabled', function () {
 				file: 'generated.js',
 				sourceRoot: '',
 				sourcesContent: [
-					fs.readFileSync(require.resolve('browserify/node_modules/browser-pack/_prelude'), 'utf8'),
+					fs.readFileSync(require.resolve('browser-pack/_prelude'), 'utf8'),
 					fs.readFileSync(file, 'utf8')
 				]
 			});
@@ -69,7 +69,7 @@ describe('debug enabled', function () {
 			expect(map).to.deep.equal({
 				version: 3,
 				sources: [
-					'node_modules/browserify/node_modules/browser-pack/_prelude.js',
+					'node_modules/browser-pack/_prelude.js',
 					first,
 					second,
 					third
@@ -79,7 +79,7 @@ describe('debug enabled', function () {
   				file: 'generated.js',
   				sourceRoot: '',
 				sourcesContent: [
-					fs.readFileSync(require.resolve('browserify/node_modules/browser-pack/_prelude'), 'utf8'),
+					fs.readFileSync(require.resolve('browser-pack/_prelude'), 'utf8'),
 					fs.readFileSync(first, 'utf8'),
 					fs.readFileSync(second, 'utf8'),
 					fs.readFileSync(third, 'utf8'),
